@@ -1,15 +1,65 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Library library = new Library();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+       try{
+           library.listBooks();
+       } catch (EmptyLibraryException e){
+           System.out.println(e.getMessage());
+       }
+
+        Book book1 = null;
+        Book book2 = null;
+        Book book3 = null;
+        Book book4 = null;
+
+        book1 = new Book("Java Programming", 300);
+        book2 = new Book("Design Patterns", -3);
+        book3 = new Book(null, 100);
+        book4 = new Book("", 400);
+        try {
+            library.addBook(book1);
+        } catch (InvalidBookException e){
+            System.out.println(e.getMessage());
         }
+        try {
+            library.addBook(book2);
+        } catch (InvalidBookException e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            library.addBook(book3);
+        } catch (InvalidBookException e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            library.addBook(book4);
+        } catch (InvalidBookException e){
+            System.out.println(e.getMessage());
+        }
+        try {
+            library.listBooks();
+        } catch(EmptyLibraryException e){
+            System.out.println(e.getMessage());
+        }
+        try {
+            library.borrowBook("Java Programming");
+        } catch(EmptyLibraryException e){
+            System.out.println(e.getMessage());
+        } catch (BookNotFoundException e){
+            System.out.println(e.getMessage());
+        }
+        try {
+            library.returnBook("Clean Code");
+        } catch (BookNotFoundException e){
+            System.out.println(e.getMessage());
+        }
+        try{
+        library.returnBook("Java Programming");
+        } catch (BookNotFoundException e){
+            System.out.println(e.getMessage());
+        }
+
+
     }
 }
