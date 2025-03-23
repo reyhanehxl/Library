@@ -6,7 +6,7 @@ public class Library {
     private ArrayList<Book> books;
 
     public Library() {
-        Book book = new Book();
+        books = new ArrayList<>();
     }
 
     public void addBook(Book book) throws InvalidBookException {
@@ -26,10 +26,11 @@ public class Library {
     }
 
     public void borrowBook(String title) throws BookNotFoundException, EmptyLibraryException {
-        if (books.isEmpty()) {
+        if (books == null || books.isEmpty()) {
             throw new EmptyLibraryException("Library is empty, nocbooks to borrow");
         }
-        if (findBook(title) == null) {
+        Book book = findBook(title);
+        if (book == null) {
             throw new BookNotFoundException("Book with title " + title + "not found.");
         }
         System.out.println("The book borrows succusfully!");
@@ -40,14 +41,14 @@ public class Library {
         if (findBook(title) == null)
             throw new BookNotFoundException("Cannot return. Book with title" + title + "not found.");
 
-    System.out.println("The book returned Succusfully!");
-
+    System.out.println("The book was returned successfully!");
     toString();
     }
     public void listBooks() throws EmptyLibraryException{
-        if(books.isEmpty()){
+        if(books == null || books.isEmpty()){
             throw new EmptyLibraryException("Library is empty.");
         }
+        System.out.println("Library's books:");
         for(Book book : books){
             System.out.println(toString());
         }
