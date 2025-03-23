@@ -12,11 +12,26 @@ public class Main {
         Book book2 = null;
         Book book3 = null;
         Book book4 = null;
-
-        book1 = new Book("Java Programming", 300);
-        book2 = new Book("Design Patterns", -3);
-        book3 = new Book(null, 100);
-        book4 = new Book("", 400);
+        try {
+            book1 = new Book("Java Programming", 300);
+        } catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
+        try {
+            book2 = new Book("Design Patterns", -3);
+        } catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
+        try {
+            book3 = new Book(null, 100);
+        } catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
+        try {
+            book4 = new Book("", 400);
+        } catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
         try {
             library.addBook(book1);
         } catch (InvalidBookException e){

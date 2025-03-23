@@ -20,7 +20,7 @@ public class Book {
         return pageCount;
     }
     @Override
-    public String toString(){
-        return this.title + " (" + this.pageCount + " pages)";
+    public String toString() {
+        return "\"" + title + "\" (" + pageCount + " pages)";
     }
 }

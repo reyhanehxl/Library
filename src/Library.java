@@ -11,9 +11,10 @@ public class Library {
 
     public void addBook(Book book) throws InvalidBookException {
         if (book == null) {
-            throw new InvalidBookException("Book should not be null");
+            throw new InvalidBookException("Book should not be null.");
         }
         books.add(book);
+        System.out.println("The book " + book.toString() + " added successfully!");
     }
 
     private Book findBook(String title) {
@@ -27,22 +28,22 @@ public class Library {
 
     public void borrowBook(String title) throws BookNotFoundException, EmptyLibraryException {
         if (books == null || books.isEmpty()) {
-            throw new EmptyLibraryException("Library is empty, nocbooks to borrow");
+            throw new EmptyLibraryException("Library is empty, no books to borrow");
         }
         Book book = findBook(title);
         if (book == null) {
-            throw new BookNotFoundException("Book with title " + title + "not found.");
+            throw new BookNotFoundException("Book with title (" + book.toString() + ") not found.");
         }
         System.out.println("The book borrows succusfully!");
         toString();
     }
 
     public void returnBook(String title) throws BookNotFoundException {
-        if (findBook(title) == null)
-            throw new BookNotFoundException("Cannot return. Book with title" + title + "not found.");
+        Book book = findBook(title);
+        if (book == null)
+            throw new BookNotFoundException("Cannot return. Book with title (" + title + ") not found.");
 
-    System.out.println("The book was returned successfully!");
-    toString();
+    System.out.println("The book " + book.toString() + " was returned successfully!");
     }
     public void listBooks() throws EmptyLibraryException{
         if(books == null || books.isEmpty()){
@@ -50,7 +51,7 @@ public class Library {
         }
         System.out.println("Library's books:");
         for(Book book : books){
-            System.out.println(toString());
+            System.out.println(book.toString());
         }
     }
 
